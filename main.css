@@ -1,0 +1,40 @@
+.title {
+  padding-bottom: 10px;
+}
+
+.search-btn {
+  width: 100%;
+}
+
+h2 {
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+#search {
+  padding-bottom: 30px;
+}
+
+.hidden {
+  display:none;
+}
+
+.panel {
+  text-align:left;
+}
+
+.panel-title{
+  margin-top: 10px;
+}
+
+.highlight {
+  background-color: red;
+}
+
+.btn-secondary {
+  padding: 10px;
+}
+
+.btn.btn-default.active {
+  background-color: #7AB6DD;
+}

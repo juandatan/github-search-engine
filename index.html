@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script type="text/javascript" src="app.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid text-center">
+      <h1 class="title">GitHub Repository Search</h1>
+      <form id="search">
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-1">
+            <input type="text" class="form-control" id="search-query" placeholder="Start a repository search..."></input>
+          </div>
+          <div class="col-xs-2">
+            <input type="submit" id="search-btn" class="btn btn-default search-btn" value="Search"></input>
+          </div>
+          <div class="col-xs-1"></div>
+          <div class="error-message"></div>
+        </div>
+      </form>
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+          <div class="panel panel-default hidden" id="results-panel">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-3">
+                  <h2 class="panel-title">Search results</h2>
+                </div>
+                <div class="col-xs-5 col-xs-offset-2">
+                  <div class="btn-group form-button row" data-toggle="buttons">
+<!--                    <p>Sort by</p>-->
+                    <label class="btn btn-default sort active">
+                        <input type="radio" class="sort" checked autocomplete="off" value="Relevance"> Relevance
+                      </label>
+                    <label class="btn btn-default sort">
+                      <input type="radio" class="sort" autocomplete="off" value="Followers"> Number of followers
+                    </label>
+                  </div>
+              </div>
+              <div class="col-xs-2 form-text">
+<!--                <p>Filter by language</p>-->
+                <select class="form-control language">
+                  <option value="All">All</option>
+                </select>
+              </div>              
+            </div>
+              </div>
+            <div class="panel-body">
+              <table class="table table-hover">
+                <tbody id="search-results">
+                </tbody>
+              </table>
+<!--
+              <div class="row">
+              <div class="col-xs-1 col-xs-offset-8">
+                <button type="button" class="btn btn-secondary" id="first">First</button>
+              </div>
+              <div class="col-xs-1">
+                <button type="button" class="btn btn-secondary" id="prev">Prev</button>
+              </div>
+              <div class="col-xs-1">
+                <button type="button" class="btn btn-secondary" id="next">Next</button>
+              </div>
+              <div class="col-xs-1">
+                <button type="button" class="btn btn-secondary" id="last">Last</button>
+              </div>
+            </div>  
+-->
+            </div>
+            
+        </div>
+      </div>
+    <div class="col-xs-1"></div>
+  
+  
+      
+    </div>
+  </body>
+  
+</html>
