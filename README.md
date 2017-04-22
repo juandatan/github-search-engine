@@ -20,6 +20,9 @@ To suggest further steps to increase the volume of search results returned, one 
 
 Alternatively, one may re-program the page to only make a GET request for the found repository's owner's number of followers when the user clicks on the search result for more information. Now, unless the user clicks on 60 results within a minute (which is unlikely), the rate limit will not be exceeded, and the user can have access to more repository information. However, this will remove the sorting functionality of the search engine. I decided against this, because knowledge of which repositories have the most reputable owners will be valuable to the user, given that there is a higher probability for these repositories to contain robust, well-written code.
 
+3. URLs 
+Finally, the URL information of each search result is listed as a link, rather than plain text, so that the user can click on it to directly access the repository page.
+
 ## Design process
 1. Construct the URL for the GET request according to the keywords given in the search input box, and make the GET request to obtain the JSON object containing information about the search results.
 2. Append each search result as a new row in the table of search results.
