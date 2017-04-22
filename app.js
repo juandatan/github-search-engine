@@ -15,9 +15,6 @@ function getSearchResults(url, callback){
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
       callback(xmlHttp);
     } 
-//    else {
-//      console.error(xmlHttp.statusText);
-//    }
 
   };
   xmlHttp.open("GET", url, true);
@@ -25,8 +22,6 @@ function getSearchResults(url, callback){
 }
 
 function updateSearchResults(language) {
-  
-  console.log(language);
 
   currDisplay = {};
   
@@ -63,8 +58,6 @@ function sortRepos(repoMap, type) {
     })
   }
   
-  console.log(repoArray);
-  
   $("#search-results").empty();
   resultCount = 1;
   for (let i = 0; i < repoArray.length; i++) {
@@ -78,8 +71,7 @@ function followersCallback(id, xmlHttp) {
   
   repoMap[id].followers = xmlHttp.responseText.length;
   appendInfo(id); 
-  
-  console.log(xmlHttp.getAllResponseHeaders());
+
 }
 
 // NOW HERE
@@ -89,9 +81,6 @@ function getFollowers(id, url, callback) {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
       followersCallback(id, xmlHttp);
     } 
-//    else {
-//      console.error(xmlHttp.statusText);
-//    }
 
   };
   xmlHttp.open("GET", url, true);
@@ -108,12 +97,6 @@ function appendInfo(id) {
 }
 
 function displaySearchResults(results) {
-  console.log(results);
-  
-//  lastPage = Math.ceil(results.total_count / 100)
-//  if (lastPage > 10) {
-//    lastPage = 10;
-//  }
   
   if ($("#results-panel").is(":hidden")) {
     $("#results-panel").toggleClass("hidden");  
@@ -128,7 +111,7 @@ function displaySearchResults(results) {
     repoMap[result.id] = {
       id: result.id,
       full_name: result.full_name,
-      language: result.language,
+      language: ((result.language == null) ? "-" : result.language),
       url: result.html_url,
       description: result.description,
       relevance: result.score
@@ -141,7 +124,9 @@ function displaySearchResults(results) {
   currDisplay = repoMap;
   
   for (language of languages) {
-    $(".language").append("<option value=\"" + language + "\">" + language + "</option>");
+    if(language != null) {
+      $(".language").append("<option value=\"" + language + "\">" + language + "</option>");  
+    }
   }
     
 }
@@ -157,7 +142,10 @@ $(document).ready(function() {
       $("#search-results").empty();
 
       repoMap = {};
-
+      languages.clear();
+      $(".language").empty();
+      $(".language").append("<option value=\"All\">All</option>");
+      
       let keywords = $("#search-query").val().trim().split(/ +/);
 
       url = "https://api.github.com/search/repositories?q=";
@@ -168,7 +156,7 @@ $(document).ready(function() {
         } 
       }
 
-      url += "&page=1&per_page=6";
+      url += "&page=1&per_page=20";
       getSearchResults(url, searchCallback);
     
     }
@@ -202,10 +190,4 @@ $(document).ready(function() {
   });
   
 });
-
-function getNewURL(newPage) {
-  let newURL = url.slice(0, url.length - currPage.toString().length);
-  newURL += newPage.toString();
-  return newURL;
-}
 
