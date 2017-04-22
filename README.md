@@ -1,5 +1,5 @@
 # github-search-engine
-A search engine that searches GitHub repositories by keyword, that is sort-able by relevance and the repository's owner's number of followers, and filter-able by language.
+A search engine that enables GitHub repository searches by keyword. It is sort-able by relevance and the repository's owner's number of followers, and filter-able by language.
 
 ## To run the program:
 1. If not already installed, install the node packages `connect` and `serve-static` by running `npm install connect serve-static` in the terminal.
