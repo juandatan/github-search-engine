@@ -70,11 +70,23 @@ function sortRepos(repoMap, type) {
 function followersCallback(id, xmlHttp) {
   
   repoMap[id].followers = xmlHttp.responseText.length;
-  appendInfo(id); 
-
+  if(currSort == "Followers") {
+    updatedCount = 0;
+    for (id of Object.keys(repoMap)) {
+      if (repoMap[id].followers != undefined) {
+        updatedCount++;
+      }
+    }
+    if (updatedCount === Object.keys(repoMap).length){
+      sortRepos(repoMap, "Followers")  
+    }
+    
+  } else {
+    appendInfo(id); 
+  }
+  
 }
 
-// NOW HERE
 function getFollowers(id, url, callback) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function () {
@@ -101,6 +113,9 @@ function displaySearchResults(results) {
   if ($("#results-panel").is(":hidden")) {
     $("#results-panel").toggleClass("hidden");  
   }
+  
+  
+  
   
   for (result of results.items) { 
       
